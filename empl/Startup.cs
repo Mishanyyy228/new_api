@@ -10,7 +10,7 @@ public class Startup
     public Startup(IConfiguration configuration)
     {
         LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(),
-            "/nlog.config"));
+        "/nlog.config"));
         Configuration = configuration;
     }
 
@@ -19,10 +19,10 @@ public class Startup
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-
-        services.ConfigureCors();
         services.ConfigureIISIntegration();
+        services.ConfigureLoggerService();
         services.AddControllers();
+        services.ConfigureCors();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

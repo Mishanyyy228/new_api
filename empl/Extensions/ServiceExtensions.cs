@@ -1,4 +1,7 @@
-﻿namespace empl.Extensions
+﻿using LoggerService;
+using static Contracts1.Contracts1;
+
+namespace empl.Extensions
 {
     public static class ServiceExtensions
     {
@@ -16,5 +19,7 @@ services.AddCors(options =>
 services.Configure<IISOptions>(options =>
 {
 });
+        public static void ConfigureLoggerService(this IServiceCollection services) =>
+services.AddScoped<ILoggerManager, LoggerManager>();
     }
     }
