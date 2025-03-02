@@ -1,6 +1,6 @@
 ﻿namespace LoggerService
 {
-    public class Class1
+    public class LoggerService
     {
 
     }
