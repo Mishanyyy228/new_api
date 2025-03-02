@@ -1,3 +1,4 @@
+using empl.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using NLog;
 using ShopApi.Extensions;
@@ -18,13 +19,10 @@ public class Startup
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+
         services.ConfigureCors();
         services.ConfigureIISIntegration();
-        services.ConfigureLoggerService();
-
         services.AddControllers();
-        services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,11 +31,11 @@ public class Startup
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
-            app.UseSwagger();
-            app.UseSwaggerUI();
         }
 
+        app.UseStaticFiles();
         app.UseHttpsRedirection();
+        app.UseHsts();
         app.UseStaticFiles();
         app.UseCors("CorsPolicy");
         app.UseForwardedHeaders(new ForwardedHeadersOptions
